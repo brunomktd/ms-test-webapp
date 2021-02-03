@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Conta</title>
+</head>
+<body>
+    <h2>Conta</h2>
+    <div th:if="${contas}">
+        <h2>Lista de Usuários</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proprietário</th>
+                    <th>Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${contas}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.proprietario}"></td>
+                    <td th:text="${c.saldo}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div >
+        <h2>Cadastrar Usuário</h2>
+        <form th:action="@{/conta/cadastrar}" method="post">
+            <input type="text" name="proprietario" placeholder="proprietario">
+            <input type="text" name="saldo" placeholder="saldo">
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <div >
+        <h2>Deletar Usuário</h2>
+        <form th:action="@{/conta/deletar}" method="post">
+            <input type="text" name="id" placeholder="id">
+            <button type="submit">Deletar</button>
+        </form>
+    </div>
+
+    <div >
+        <h2>Depositar</h2>
+        <form th:action="@{/conta/depositar}" method="post">
+            <input type="text" name="id" placeholder="Número da conta (ID)">
+            <input type="text" name="saldo" placeholder="saldo">
+            <button type="submit">Depositar</button>
+        </form>
+    </div>
+</body>
+</html>
